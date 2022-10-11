@@ -10,7 +10,7 @@
 
       <section class="todo-list">
         <transition-group name="list" tag="ul">
-          <li v-for="(todo, index) in todos" :key="index">
+          <li :class="{todo: true, editing: updateInfo.idx === index }" v-for="(todo, index) in todos" :key="index" >
             <span>{{ todo }}</span>
             <input type="text" :value="updateItem" :index="index" @input="checkInput2($event)">
             <div class="icons">
@@ -73,8 +73,8 @@ export default {
       let todoIndex = e.target.getAttribute('index');
       this.todos.splice(todoIndex, 1);
     },
-    updateToDo(text,idx) {
-      this.updateInfo.text = text;
+    updateToDo(item,idx) {
+      this.updateInfo.text = item;
       this.updateInfo.idx = idx;
     },
     updateCheck(e,item){
